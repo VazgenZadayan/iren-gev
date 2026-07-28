@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const MUSIC_SRC = "/music.mp3";
-const START_AT = 55;
+const MUSIC_SRC = "/frank-sinatra-i-love-you-baby.mp3";
+const START_AT = 10;
 
 export function MusicPlayer({
   playLabel = "Play music",

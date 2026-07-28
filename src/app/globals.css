@@ -9,9 +9,8 @@
   --accent-deep: #3d3833;
   --silver: #a8a29a;
   --line: rgba(26, 26, 26, 0.12);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-armenian: var(--font-armenian);
+  --font-display: var(--font-roboto), sans-serif;
+  --font-body: var(--font-roboto), sans-serif;
 }
 
 @theme inline {
@@ -35,14 +34,16 @@ body {
   background:
     radial-gradient(ellipse 100% 60% at 50% -5%, rgba(168, 162, 154, 0.18), transparent 55%),
     linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-roboto), sans-serif;
+  font-style: italic;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+/* Roboto has no Armenian glyphs — Noto fallback for hy */
 .page-shell[data-locale="hy"],
 body[data-locale="hy"] {
-  font-family: var(--font-armenian), var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-roboto), var(--font-armenian), sans-serif;
 }
 
 .page-shell[data-locale="hy"] .hero__names,
@@ -55,7 +56,7 @@ body[data-locale="hy"] .section__title,
 body[data-locale="hy"] .closing__line,
 body[data-locale="hy"] .closing__names,
 body[data-locale="hy"] .place__name {
-  font-family: var(--font-armenian), var(--font-display), serif;
+  font-family: var(--font-roboto), var(--font-armenian), sans-serif;
 }
 
 a {
@@ -231,7 +232,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: clamp(4rem, 17vw, 6.4rem);
   font-weight: 400;
   line-height: 0.92;
@@ -305,7 +306,7 @@ img {
 }
 
 .countdown__value {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: clamp(1.55rem, 6.8vw, 2.05rem);
   font-weight: 400;
   line-height: 1;
@@ -375,7 +376,7 @@ img {
 
 .section__title {
   margin: 0;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: clamp(2rem, 8vw, 2.65rem);
   font-weight: 400;
   line-height: 1.15;
@@ -433,13 +434,12 @@ img {
 }
 
 .photo-break--tall .photo-break__frame {
-  aspect-ratio: 3 / 4;
-  max-height: 72svh;
+  /* Explicit height keeps width at 100% — aspect-ratio + max-height shrinks the frame */
+  height: min(72svh, calc(100vw * 4 / 3));
 }
 
 .photo-break--portrait .photo-break__frame {
-  aspect-ratio: 4 / 5;
-  max-height: 62svh;
+  height: min(62svh, calc(100vw * 5 / 4));
 }
 
 .photo-break--wide .photo-break__frame {
@@ -626,7 +626,7 @@ img {
 
 .place__time {
   margin: 0.4rem 0 0;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 2.25rem;
   line-height: 1;
   color: var(--ink);
@@ -634,7 +634,7 @@ img {
 
 .place__name {
   margin: 0.55rem 0 0;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 1.22rem;
   font-weight: 400;
   line-height: 1.25;
@@ -760,7 +760,7 @@ img {
 }
 
 .timeline__time {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 1.2rem;
   color: var(--accent-deep);
 }
@@ -783,7 +783,7 @@ img {
 
 .rsvp__deadline {
   margin: 1.35rem 0 0;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 1.25rem;
   font-style: italic;
   color: var(--accent-deep);
@@ -870,7 +870,7 @@ img {
 
 .closing__line {
   margin: 0;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: clamp(1.65rem, 6.8vw, 2.25rem);
   font-weight: 400;
   font-style: italic;
@@ -880,7 +880,7 @@ img {
 
 .closing__names {
   margin: 8.35rem 0 0;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 1.15rem;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.82);
@@ -990,13 +990,11 @@ img {
 
   /* Source photos are landscape — don’t force a tall crop on desktop */
   .photo-break--portrait .photo-break__frame {
-    aspect-ratio: 3 / 2;
-    max-height: min(68vh, 34rem);
+    height: min(68vh, 34rem);
   }
 
   .photo-break--tall .photo-break__frame {
-    aspect-ratio: 3 / 2;
-    max-height: min(72vh, 36rem);
+    height: min(72vh, 36rem);
   }
 
   .photo-break--portrait .photo-break__image {

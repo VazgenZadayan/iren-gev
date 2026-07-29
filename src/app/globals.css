@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Moontime";
+  src:
+    url("/fonts/Moontime.woff2") format("woff2"),
+    url("/fonts/Moontime.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink: #1a1a1a;
   --ink-soft: #5c5c5c;
@@ -9,8 +19,10 @@
   --accent-deep: #3d3833;
   --silver: #a8a29a;
   --line: rgba(26, 26, 26, 0.12);
-  --font-display: var(--font-roboto), sans-serif;
-  --font-body: var(--font-roboto), sans-serif;
+  --font-moontime: "Moontime", cursive;
+  --font-readable: var(--font-cormorant), "Times New Roman", serif;
+  --font-display: var(--font-moontime);
+  --font-body: var(--font-readable);
 }
 
 @theme inline {
@@ -34,16 +46,15 @@ body {
   background:
     radial-gradient(ellipse 100% 60% at 50% -5%, rgba(168, 162, 154, 0.18), transparent 55%),
     linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
-  font-family: var(--font-roboto), sans-serif;
-  font-style: italic;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Roboto has no Armenian glyphs — Noto fallback for hy */
+/* Moontime/Cormorant have no Armenian glyphs — Noto fallback for hy */
 .page-shell[data-locale="hy"],
 body[data-locale="hy"] {
-  font-family: var(--font-roboto), var(--font-armenian), sans-serif;
+  font-family: var(--font-body), var(--font-armenian), sans-serif;
 }
 
 .page-shell[data-locale="hy"] .hero__names,
@@ -56,7 +67,7 @@ body[data-locale="hy"] .section__title,
 body[data-locale="hy"] .closing__line,
 body[data-locale="hy"] .closing__names,
 body[data-locale="hy"] .place__name {
-  font-family: var(--font-roboto), var(--font-armenian), sans-serif;
+  font-family: var(--font-armenian), sans-serif;
 }
 
 a {
@@ -232,7 +243,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--font-roboto), sans-serif;
+  font-family: var(--font-moontime);
   font-size: clamp(4rem, 17vw, 6.4rem);
   font-weight: 400;
   line-height: 0.92;
@@ -261,10 +272,13 @@ img {
 
 .hero__date {
   margin: 9rem 0 0;
-  font-size: clamp(1.15rem, 4.6vw, 1.55rem);
+  font-family: var(--font-body);
+  font-size: clamp(1.45rem, 5.2vw, 1.95rem);
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
 }
 
 .hero__countdown {
@@ -286,8 +300,8 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 3.6rem;
-  padding: 0.15rem 0.85rem;
+  min-width: 3.85rem;
+  padding: 0.15rem 0.9rem;
 }
 
 .countdown__item:not(:last-child)::after {
@@ -306,23 +320,25 @@ img {
 }
 
 .countdown__value {
-  font-family: var(--font-roboto), sans-serif;
-  font-size: clamp(1.55rem, 6.8vw, 2.05rem);
-  font-weight: 400;
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 8vw, 2.65rem);
+  font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: #fff;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .countdown__label {
-  margin-top: 0.4rem;
-  font-size: 0.56rem;
+  margin-top: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .hero__line {
@@ -368,7 +384,8 @@ img {
 .eyebrow {
   margin: 0 0 0.85rem;
   color: var(--accent);
-  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -376,8 +393,8 @@ img {
 
 .section__title {
   margin: 0;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: clamp(2rem, 8vw, 2.65rem);
+  font-family: var(--font-moontime);
+  font-size: clamp(2.45rem, 9.5vw, 3.25rem);
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.01em;
@@ -387,8 +404,10 @@ img {
 .section__body {
   margin: 1.15rem 0 0;
   color: var(--ink-soft);
-  font-size: 1.05rem;
-  line-height: 1.75;
+  font-family: var(--font-body);
+  font-size: 1.28rem;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
 .invitation {
@@ -398,16 +417,16 @@ img {
 }
 
 .invitation .section__title {
-  font-size: clamp(1.7rem, 6.5vw, 2.2rem);
+  font-size: clamp(2.35rem, 9vw, 3.1rem);
 }
 
 .invitation .section__body {
-  max-width: 28rem;
+  max-width: 32rem;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0.85rem;
-  font-size: 0.98rem;
-  line-height: 1.65;
+  margin-top: 1rem;
+  font-size: clamp(1.2rem, 3.8vw, 1.4rem);
+  line-height: 1.7;
 }
 
 .invitation .eyebrow {
@@ -618,7 +637,8 @@ img {
 .place__label {
   margin: 0;
   color: var(--accent);
-  font-size: 0.68rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -626,25 +646,27 @@ img {
 
 .place__time {
   margin: 0.4rem 0 0;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 2.25rem;
+  font-family: var(--font-moontime);
+  font-size: 2.65rem;
   line-height: 1;
   color: var(--ink);
 }
 
 .place__name {
   margin: 0.55rem 0 0;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 1.22rem;
+  font-family: var(--font-moontime);
+  font-size: 1.65rem;
   font-weight: 400;
   line-height: 1.25;
 }
 
 .place__address {
-  margin: 0.28rem 0 0;
+  margin: 0.35rem 0 0;
   color: var(--ink-soft);
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
 .place__map {
@@ -653,7 +675,9 @@ img {
   padding-bottom: 0.1rem;
   border-bottom: 1px solid rgba(61, 56, 51, 0.4);
   color: var(--accent-deep);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
   transition: opacity 0.25s ease;
 }
@@ -760,20 +784,24 @@ img {
 }
 
 .timeline__time {
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 1.2rem;
+  font-family: var(--font-moontime);
+  font-size: 1.55rem;
   color: var(--accent-deep);
 }
 
 .timeline__name {
   margin: 0;
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .timeline__note {
   margin: 0.25rem 0 0;
   color: var(--ink-soft);
-  font-size: 0.92rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .rsvp {
@@ -783,9 +811,9 @@ img {
 
 .rsvp__deadline {
   margin: 1.35rem 0 0;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 1.25rem;
-  font-style: italic;
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 500;
   color: var(--accent-deep);
 }
 
@@ -801,7 +829,9 @@ img {
 }
 
 .rsvp__phone span {
-  font-size: 0.68rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -870,18 +900,17 @@ img {
 
 .closing__line {
   margin: 0;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: clamp(1.65rem, 6.8vw, 2.25rem);
+  font-family: var(--font-moontime);
+  font-size: clamp(2rem, 8vw, 2.75rem);
   font-weight: 400;
-  font-style: italic;
   line-height: 1.3;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
 }
 
 .closing__names {
   margin: 8.35rem 0 0;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 1.15rem;
+  font-family: var(--font-moontime);
+  font-size: 1.45rem;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.82);
 }

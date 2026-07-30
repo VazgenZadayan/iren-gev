@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Noto_Sans_Armenian } from "next/font/google";
+import { Roboto, Noto_Sans_Armenian } from "next/font/google";
 import { getSiteUrl } from "@/lib/site";
 import "./globals.css";
 
-const body = Cormorant_Garamond({
+const roboto = Roboto({
   subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  weight: ["400", "500", "700"],
+  style: ["italic"],
+  variable: "--font-roboto",
   display: "swap",
 });
 
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="hy"
-      className={`${body.variable} ${armenian.variable} h-full`}
+      className={`${roboto.variable} ${armenian.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full antialiased" suppressHydrationWarning>
